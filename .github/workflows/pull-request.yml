@@ -45,6 +45,8 @@ jobs:
       storybook: ${{ steps.filter.outputs.storybook }}
     steps:
     - uses: actions/checkout@v4
+      if: github.event_name == 'merge_group' # not needed for PRs, only merge-groups
+      
     - uses: dorny/paths-filter@v2
       id: filter
       with:
