@@ -9,7 +9,7 @@ jobs:
   merge-validation:
     name: Merge Validation Checks
     runs-on: ubuntu-latest
-    if: always() && !contains(join(needs.*.result, ','), 'failure')
+    if: always()
     needs: 
       - storybook-ci
     steps:
@@ -17,8 +17,15 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Dependency Results: ${{ join(needs.*.result, ',') }}"
+          pwd
+          ls -al
+
+      - name: Failures Detected
+        if: contains(join(needs.*.result, ','), 'failure')
+        run: exit 1
 
       - name: Generate Deployment Summary
+        if: always()
         shell: pwsh
         env:
           NEEDS_JSON: ${{ toJSON(needs) }}
