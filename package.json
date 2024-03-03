@@ -19,6 +19,7 @@
     "@storybook/react": "^7.6.4",
     "@storybook/react-webpack5": "^7.6.4",
     "@storybook/test": "^7.6.4",
+    "@storybook/test-runner": "^0.16.0",
     "@types/react": "^18.2.45",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
